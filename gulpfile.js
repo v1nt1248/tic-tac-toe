@@ -18,15 +18,15 @@ const BUILD_PATH = './dist'
 const SRC_PATH = './src'
 const TMP_PATH = './temp'
 
-gulp.task('del:dist', function() {
+gulp.task('del:dist', () => {
   return del([BUILD_PATH])
 })
 
-gulp.task('del:tmp', function() {
+gulp.task('del:tmp', () => {
   return del([TMP_PATH])
 })
 
-gulp.task('compile:css', function() {
+gulp.task('compile:css', () => {
   return gulp.src(`${SRC_PATH}/**/*.scss`)
     .pipe(gulpIf(!argv.prod, sourcemaps.init()))
     .pipe(sass())
@@ -34,7 +34,7 @@ gulp.task('compile:css', function() {
     .pipe(gulp.dest(TMP_PATH))
 })
 
-gulp.task('concat:css', function() {
+gulp.task('concat:css', () => {
   return gulp.src(`${TMP_PATH}/**/*.css`)
     .pipe(concatCss('index.css'))
     .pipe(gulp.dest(BUILD_PATH))
@@ -43,7 +43,7 @@ gulp.task('concat:css', function() {
 
 gulp.task('create:css', gulp.series('compile:css', 'concat:css'))
 
-gulp.task('create:html', function() {
+gulp.task('create:html', () => {
   return gulp.src(
     [
       `${SRC_PATH}/**/*.html`,
@@ -56,7 +56,7 @@ gulp.task('create:html', function() {
     .pipe(reload({stream:true}))
 })
 
-gulp.task('compile:js', function() {
+gulp.task('compile:js', () => {
   const tsPropject = ts.createProject('tsconfig.json')
   return tsPropject.src()
     .pipe(gulpIf(!argv.prod, sourcemaps.init()))
@@ -65,7 +65,7 @@ gulp.task('compile:js', function() {
     .pipe(gulp.dest(TMP_PATH))
 })
 
-gulp.task('concat:js', function() { 
+gulp.task('concat:js', () => { 
   return browserify({
       entries: `${TMP_PATH}/index.js`,
       debug: true
@@ -81,7 +81,7 @@ gulp.task('concat:js', function() {
 
 gulp.task('create:js', gulp.series('compile:js', 'concat:js'))
 
-gulp.task('browserSync', function() {
+gulp.task('browserSync', () => {
   browserSync({
     server: {
       baseDir: BUILD_PATH
@@ -95,7 +95,7 @@ gulp.task('browserSync', function() {
 
 gulp.task('default', gulp.series('del:dist', gulp.parallel('create:css', 'create:html', 'create:js'), 'del:tmp'))
 
-gulp.task('watch', function() {
+gulp.task('watch', () => {
   gulp.watch(`${SRC_PATH}/**/*.html`, gulp.series('create:html'))
   gulp.watch(`${SRC_PATH}/**/*.scss`, gulp.series('create:css'))
   gulp.watch(`${SRC_PATH}/**/*.ts`, gulp.series('create:js'))
