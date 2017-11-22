@@ -3,9 +3,9 @@ const route = ($stateProvider: angular.ui.IStateProvider, $urlRouterProvider: an
     .otherwise('/')
 
   $stateProvider
-    .state('root', {
+    .state('settings', {
       url: '/',
-      template: `<h1>HELLO!</h1>`
+      template: `<settings></settings>`
     })
 }
 

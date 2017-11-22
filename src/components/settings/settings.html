@@ -1,0 +1,63 @@
+<section class="settings">
+  <div class="settings__title">Настройки игры</div>
+  <form class="settings__content"
+    name="settings">
+
+    <div class="settings__content-item settings__content-user">
+      <label>Имя игрока <span>&#215;</span></label>
+      <input type="text" 
+        name="userX"
+        ng-class="{'error': $ctrl.$scope.settings.userX.$invalid && $ctrl.$scope.settings.userX.$dirty}"
+        required
+        ng-model="$ctrl.userX" />
+      <div ng-if="$ctrl.$scope.settings.userX.$invalid && $ctrl.$scope.settings.userX.$dirty"
+        class="settings__content-item--error">
+        Поле "Имя игрока" обязательно для заполнения
+      </div>
+    </div>
+
+    <div class="settings__content-item settings__content-user">
+      <label>Имя игрока <span>&#9675;</span></label>
+      <input type="text"
+        name="userO"
+        ng-class="{'error': $ctrl.$scope.settings.userO.$invalid && $ctrl.$scope.settings.userO.$dirty}"
+        required 
+        ng-model="$ctrl.userO" />
+      <div ng-if="$ctrl.$scope.settings.userO.$invalid && $ctrl.$scope.settings.userO.$dirty"
+        class="settings__content-item--error">
+        Поле "Имя игрока" обязательно для заполнения
+      </div>
+    </div>
+
+    <div class="settings__content-item settings__content-dim">
+      <label>Размер игрового поля (X &#215; Y)</label>
+      <input type="number" 
+        name="dimX"
+        ng-class="{'error': $ctrl.$scope.settings.dimX.$invalid && $ctrl.$scope.settings.userO.$dirty}"
+        required
+        ng-min="10"
+        ng-max="20"
+        ng-model="$ctrl.dim.x" />
+      <input type="number" 
+        name="dimY"
+        ng-class="{'error': $ctrl.$scope.settings.dimY.$invalid && $ctrl.$scope.settings.userO.$dirty}"
+        required
+        ng-min="10"
+        ng-max="20"
+        ng-model="$ctrl.dim.y" />
+      <div ng-if="($ctrl.$scope.settings.dimX.$invalid && $ctrl.$scope.settings.dimX.$dirty) || ($ctrl.$scope.settings.dimY.$invalid && $ctrl.$scope.settings.dimY.$dirty)"
+        class="settings__content-item--error">
+        Значение должно быть не менее 10 и не более 20
+      </div>
+    </div>
+
+    <div class="settings__content-item settings__content-btns">
+      <button type="button"
+        ng-disabled="$ctrl.$scope.settings.$pristine || $ctrl.$scope.settings.$invalid"
+        ng-click="$ctrl.startGame()">
+        Начать игру
+      </button>
+    </div>
+
+  </form>
+</section>
