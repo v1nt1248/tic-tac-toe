@@ -1,5 +1,5 @@
 import * as angular from 'angular'
-import { DEF_DIMENTION } from './const'
+import { DEF_DIMENTION, VALUE } from './const'
 
 export const ModuleName = 'toe.service.store'
 export const SrvName = 'storeService'
@@ -16,6 +16,7 @@ export class Store {
     x: number,
     y: number
   }
+  public isPlay: boolean
 
   constructor() {
     this.userO = ''
@@ -24,6 +25,19 @@ export class Store {
       x: DEF_DIMENTION.x,
       y: DEF_DIMENTION.y
     }
+    this.isPlay = false
+  }
+
+  preparePlayingField() {
+    const result: number[][] = []
+    for (let y = 0; y < this.dimentions.y; y++) {
+      const row: number[] = []
+      for (let x = 0; x < this.dimentions.x; x++) {
+        row.push(VALUE.empty)
+      }
+      result.push(row)
+    }
+    return result
   }
 
 }

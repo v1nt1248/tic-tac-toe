@@ -10,9 +10,13 @@ MainCompMod.addComponent(angular)
 import * as SettingsCompMod from '../components/settings/settings'
 SettingsCompMod.addComponent(angular)
 
+import * as GameCompMod from '../components/game/game'
+GameCompMod.addComponent(angular)
+
 export default [
   router,
   StoreMod.ModuleName,
   MainCompMod.ModuleName,
-  SettingsCompMod.ModuleName
+  SettingsCompMod.ModuleName,
+  GameCompMod.ModuleName
 ]

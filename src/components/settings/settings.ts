@@ -23,18 +23,22 @@ class Settings {
   static $inject = ['$scope', '$state', '$timeout', StoreMod.SrvName]
   constructor(
     private $scope: SetScope,
-    private $state: angular.ui.IState,
+    private $state: angular.ui.IStateService,
     private $timeout: angular.ITimeoutService,
     private _storeSrv: StoreMod.Store
   ) {
+    this._storeSrv.isPlay = false
     this.userX = this._storeSrv.userX
     this.userO = this._storeSrv.userO
     this.dim = this._storeSrv.dimentions
   }
 
   startGame() {
-    console.info('Starting ...')
-    console.log(this)
+    this._storeSrv.userX = this.userX
+    this._storeSrv.userO = this.userO
+    this._storeSrv.dimentions = angular.copy(this.dim)
+    this._storeSrv.isPlay = true
+    this.$state.go('game')
   }
 
 }

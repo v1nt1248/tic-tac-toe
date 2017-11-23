@@ -11,11 +11,6 @@ export const VALUE = {
   winO: 4
 }
 
-export const DISPLAY = {
-  x: 215, //'&#215;'
-  o: 9675 //'&#9675;'
-}
-
 export const WINNING_OPTIONS = [
   [ [0,0], [1,0], [2,0], [3,0], [4,0] ],
   [ [-1,0], [0,0], [1,0], [2,0], [3,0] ],

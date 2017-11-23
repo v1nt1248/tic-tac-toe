@@ -5,7 +5,8 @@
 
     <div class="settings__content-item settings__content-user">
       <label>Имя игрока <span>&#215;</span></label>
-      <input type="text" 
+      <input type="text"
+        autocomplete="off"
         name="userX"
         ng-class="{'error': $ctrl.$scope.settings.userX.$invalid && $ctrl.$scope.settings.userX.$dirty}"
         required
@@ -19,6 +20,7 @@
     <div class="settings__content-item settings__content-user">
       <label>Имя игрока <span>&#9675;</span></label>
       <input type="text"
+        autocomplete="off"
         name="userO"
         ng-class="{'error': $ctrl.$scope.settings.userO.$invalid && $ctrl.$scope.settings.userO.$dirty}"
         required 
@@ -31,14 +33,16 @@
 
     <div class="settings__content-item settings__content-dim">
       <label>Размер игрового поля (X &#215; Y)</label>
-      <input type="number" 
+      <input type="number"
+        autocomplete="off"
         name="dimX"
         ng-class="{'error': $ctrl.$scope.settings.dimX.$invalid && $ctrl.$scope.settings.userO.$dirty}"
         required
         ng-min="10"
         ng-max="20"
         ng-model="$ctrl.dim.x" />
-      <input type="number" 
+      <input type="number"
+        autocomplete="off"
         name="dimY"
         ng-class="{'error': $ctrl.$scope.settings.dimY.$invalid && $ctrl.$scope.settings.userO.$dirty}"
         required

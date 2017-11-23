@@ -1,0 +1,15 @@
+<section class="game">
+  <div class="game__wrap">
+    <div class="game__field">
+      <div ng-repeat="row in $ctrl.field track by $index"
+        ng-init="rowIndex = $index"
+        class="game__field-row">
+          <div ng-repeat="cell in row track by $index"
+            class="game__field-cell"
+            ng-class="{'game__field-cell--empty': cell === 0, 'game__field-cell--x': cell === 1 || cell === 3, 'game__field-cell--0': cell === 2 || cell === 4}"
+            ng-click="$ctrl.selectCell(rowIndex, $index)">
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
