@@ -25,8 +25,12 @@ class Game {
     if (this.field[y][x] === VALUE.empty) {
       this.$timeout(() => {
         this.field[y][x] = this.isMoveX ? VALUE.x : VALUE.o
+      }).then(() => {
+        const isWinningOptions = this._storeSrv.checkGameStatus(this.field, x, y)
+        if (isWinningOptions !== -1) {
+          alert(`Win ${this.field[y][x]}`)
+        }
         this.isMoveX = !this.isMoveX
-        // console.log(this.field)
       })
     }
   }
