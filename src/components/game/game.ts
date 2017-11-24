@@ -27,6 +27,7 @@ class Game {
         this.field[y][x] = this.isMoveX ? VALUE.x : VALUE.o
       }).then(() => {
         const isWinningOptions = this._storeSrv.checkGameStatus(this.field, x, y)
+        console.log(`Comb: ${isWinningOptions}`)
         if (isWinningOptions !== -1) {
           alert(`Win ${this.field[y][x]}`)
         }
