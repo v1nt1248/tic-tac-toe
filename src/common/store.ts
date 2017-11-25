@@ -42,33 +42,28 @@ export class Store {
 
   checkGameStatus(gameField: number[][], x: number, y: number) {
     let result = -1
-    // console.log(`Позиция: ${x} - ${y}`)
     const currentValue = gameField.slice(y, y + 1)[0].slice(x, x + 1)[0]
-    for (let row = 0; row < WINNING_OPTIONS.length; row++) {
-      // const a = WINNING_OPTIONS[row]
-      // console.log(`Комбинация: [${a[0][0]}, ${a[0][1]}], [${a[1][0]}, ${a[1][1]}], [${a[2][0]}, ${a[2][1]}], [${a[3][0]}, ${a[3][1]}], [${a[4][0]}, ${a[4][1]}]`)
+    for (let rowIndex = 0; rowIndex < WINNING_OPTIONS.length; rowIndex++) {
       let coincidences = 0
-      for (let pos of WINNING_OPTIONS[row]) {
+      for (let pos of WINNING_OPTIONS[rowIndex]) {
+        const xCoord = x + pos[0]
+        const yCoord = y + pos[1]
         if (
-          (x + pos[0]) < 0 ||
-          (x + pos[0]) >= this.dimentions.x ||
-          (y + pos[1]) < 0 ||
-          (y + pos[1] >= this.dimentions.y)
+          xCoord < 0 || 
+          xCoord >= this.dimentions.x ||
+          yCoord < 0 ||
+          yCoord >= this.dimentions.y
         ) {
-          // console.log(`[${x + pos[0]} , ${y + pos[1]}] = undefined`) 
-          continue 
-        }
-        else {
-          // console.log(`[${x + pos[0]} , ${y + pos[1]}] = ${gameField[y + pos[1]][x + pos[0]]}`) 
-          coincidences = (gameField[y + pos[1]][x + pos[0]] === currentValue) ? coincidences + 1 : coincidences
+          continue
+        } else {
+          coincidences = (gameField[yCoord][xCoord] === currentValue) ? coincidences + 1 : coincidences
         }
       }
       if (coincidences === 5) {
-        result = row
+        result = rowIndex
         break
       }
     }
     return result
   }
-
 }

@@ -1,11 +1,28 @@
 import * as angular from 'angular'
+import * as StoreSrvMod from '../../common/store'
 
 export const ModuleName = 'toe.component.main'
 
 class Main {
+  private isMoveX: boolean = true
 
-  static $inject = ['$state']
-  constructor() {}
+  static $inject = ['$scope', '$state', StoreSrvMod.SrvName]
+  constructor(
+    private $scope: angular.IScope,
+    private $state: angular.ui.IStateService,
+    private _storeSrv: StoreSrvMod.Store
+  ) {
+    this.$scope.$on('change_player', (ev, player) => {
+      this.isMoveX = (player === 'x') ? true : false
+    })
+  }
+
+  cancel() {
+    this._storeSrv.userX = ''
+    this._storeSrv.userO = ''
+    this._storeSrv.isPlay = false
+    this.$state.go('settings')
+  }
 
 }
 

@@ -10,10 +10,16 @@
         name="userX"
         ng-class="{'error': $ctrl.$scope.settings.userX.$invalid && $ctrl.$scope.settings.userX.$dirty}"
         required
+        ng-change="$ctrl.checkName('userX')"
         ng-model="$ctrl.userX" />
       <div ng-if="$ctrl.$scope.settings.userX.$invalid && $ctrl.$scope.settings.userX.$dirty"
         class="settings__content-item--error">
-        Поле "Имя игрока" обязательно для заполнения
+        <span ng-if="$ctrl.$scope.settings.userX.$error.required">
+          Поле "Имя игрока" обязательно для заполнения
+        </span>
+        <span ng-if="$ctrl.$scope.settings.userX.$error.unique">
+          Имена игроков должны отличаться
+        </span>
       </div>
     </div>
 
@@ -23,11 +29,17 @@
         autocomplete="off"
         name="userO"
         ng-class="{'error': $ctrl.$scope.settings.userO.$invalid && $ctrl.$scope.settings.userO.$dirty}"
-        required 
+        required
+        ng-change="$ctrl.checkName('userO')"
         ng-model="$ctrl.userO" />
       <div ng-if="$ctrl.$scope.settings.userO.$invalid && $ctrl.$scope.settings.userO.$dirty"
         class="settings__content-item--error">
-        Поле "Имя игрока" обязательно для заполнения
+        <span ng-if="$ctrl.$scope.settings.userO.$error.required">
+          Поле "Имя игрока" обязательно для заполнения
+        </span>
+        <span ng-if="$ctrl.$scope.settings.userO.$error.unique">
+          Имена игроков должны отличаться
+        </span>
       </div>
     </div>
 
@@ -39,7 +51,7 @@
         ng-class="{'error': $ctrl.$scope.settings.dimX.$invalid && $ctrl.$scope.settings.userO.$dirty}"
         required
         ng-min="10"
-        ng-max="20"
+        ng-max="30"
         ng-model="$ctrl.dim.x" />
       <input type="number"
         autocomplete="off"
@@ -47,11 +59,11 @@
         ng-class="{'error': $ctrl.$scope.settings.dimY.$invalid && $ctrl.$scope.settings.userO.$dirty}"
         required
         ng-min="10"
-        ng-max="20"
+        ng-max="30"
         ng-model="$ctrl.dim.y" />
       <div ng-if="($ctrl.$scope.settings.dimX.$invalid && $ctrl.$scope.settings.dimX.$dirty) || ($ctrl.$scope.settings.dimY.$invalid && $ctrl.$scope.settings.dimY.$dirty)"
         class="settings__content-item--error">
-        Значение должно быть не менее 10 и не более 20
+        Значение должно быть не менее 10 и не более 30
       </div>
     </div>
 

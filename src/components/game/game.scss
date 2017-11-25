@@ -1,5 +1,3 @@
-@import "../../config";
-
 .game {
   width: 100%;
   height: 100%;
@@ -9,23 +7,69 @@
   justify-content: center;
   align-items: center;
 
+  &-over {
+    pointer-events: none;
+
+    &__notif {
+      position: absolute;
+      top: 120px;
+      left: calc(50% - 200px);
+      width: 400px;
+      height: 400px;
+      padding: 16px;
+      border-radius: 5px;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 10;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+
+      &-title {
+        font-size: 36px;
+        font-weight: bold;
+        color: #283593;
+        margin-bottom: 24px;
+      }
+
+      &-text {
+        font-size: 36px;
+        font-weight: bold;
+        color: #ffffff;
+        margin-bottom: 72px;
+      }
+
+      button {
+        font-size: 16px;
+        font-weight: bold;
+        color: darken(#283593, 5%);
+        border: none;
+        border-radius: 4px;
+        padding: 8px 16px;
+        background-color: #ffffff;
+        box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+      }
+    }
+  }
+
   &__wrap {
     width: 100%;
     height: 100%;
     overflow: auto;
 
     &::-webkit-scrollbar-track {
-      background-color: $scrollBgColor;
+      background-color: #f5f5f5;
     }
     
     &::-webkit-scrollbar {
       width: 8px;
       height: 8px;
-      background-color: $scrollBgColor;
+      background-color: #f5f5f5;
     }
     
     &::-webkit-scrollbar-thumb {
-      background-color: $mainTitleColor;
+      background-color: #283593;
     }
 
   }
@@ -69,6 +113,15 @@
           content: '\25CB';
           font-size: 32px;
         }
+      }
+
+      &--win {
+        animation: blink 0.4s linear normal infinite;
+      }
+
+      @keyframes blink {
+        0% { background-color: #ffffff; }
+        100% { background-color: #fff59d; }
       }
     }
   }

@@ -4,12 +4,7 @@ import * as StoreMod from '../../common/store'
 export const ModuleName = 'toe.component.settings'
 
 interface SetScope extends angular.IScope {
-  settings: {
-    userX: angular.IFormController,
-    userO: angular.IFormController,
-    dimX: angular.IFormController,
-    dimY: angular.IFormController
-  }
+  settings: angular.IFormController
 }
 
 class Settings {
@@ -31,6 +26,14 @@ class Settings {
     this.userX = this._storeSrv.userX
     this.userO = this._storeSrv.userO
     this.dim = this._storeSrv.dimentions
+  }
+
+  checkName(field) {
+    if (this.userX === this.userO) {
+      this.$scope.settings[field].$setValidity('unique', false)
+    } else {
+      this.$scope.settings[field].$setValidity('unique', true)
+    }
   }
 
   startGame() {

@@ -1,5 +1,4 @@
 import * as angular from 'angular'
-import { $injector } from '@uirouter/angularjs'
 import * as StoreSrvMod from './common/store'
 import appModuleDependencies from './common/modules'
 import route from './common/router'

@@ -1,4 +1,27 @@
 <section class="main">
   <div class="main__title">Крестики-нолики</div>
   <div class="main__content" ui-view></div>
+
+  <div ng-if="$ctrl._storeSrv.isPlay"
+    class="main__user-wrap">
+    <div class="main__user main__user-x"
+      ng-class="{'main__user-active': $ctrl.isMoveX}">
+      <div>Игрок</div>
+      <span>&#215;</span>:
+      <i>{{$ctrl._storeSrv.userX}}</i>
+    </div>
+    <div class="main__user main__user-o"
+      ng-class="{'main__user-active': !$ctrl.isMoveX}">
+      <div>Игрок</div>
+      <span>&#9675;</span>:
+      <i>{{$ctrl._storeSrv.userO}}</i>
+    </div>
+  </div>
+
+  <button ng-if="$ctrl._storeSrv.isPlay"
+    type="button"
+    ng-click="$ctrl.cancel()">
+    Прекратить игру
+  </button>
+
 </section>

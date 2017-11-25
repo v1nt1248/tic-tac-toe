@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "gulp": "./node_modules/.bin/gulp",
-    "start": "http-server -a localhost -p 8000 -c-1 ./dist"
+    "gulp": "./node_modules/.bin/gulp"
   },
   "repository": {
     "type": "git",
